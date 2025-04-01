@@ -1,17 +1,9 @@
 import React from "react";
-import { Button } from "./components/ui/button";
-import Cart from "./pages/Cart";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+
+import AppRoutes from "./routes/AppRoutes";
 
 const App = () => {
-  return (
-    <div className="text-red-700">
-      <Cart />
-      <SignIn />
-      <SignUp />
-    </div>
-  );
+  return <AppRoutes />;
 };
 
 export default App;

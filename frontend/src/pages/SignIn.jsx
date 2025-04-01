@@ -20,15 +20,11 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center  p-6">
+    <div className="flex min-h-screen items-center justify-center  p-6 bg-[url(https://media.istockphoto.com/id/2163983591/vector/abstract-multicolored-gradient-vector-background-design-wallpaper-template-with-geometric.jpg?s=612x612&w=0&k=20&c=wb1CT6XfnlzyhA63kMaN6LW0EM-ltGJSPSPlSW9qHos=)] bg-no-repeat bg-center bg-cover">
       <Card className="w-full max-w-md shadow-2xl rounded-2xl p-8 bg-white text-gray-900 ">
-        <CardHeader className="text-center">
-          <CardTitle className="text-4xl font-extrabold text-gray-800">
-            Welcome Back 🎉
-          </CardTitle>
-          <p className="text-gray-500 text-sm mt-2">
-            Sign in to continue your journey
-          </p>
+        <CardHeader className="text-center flex flex-col items-center">
+          <img src="/logo.jpg" alt="logo" className="rounded-full h-20 w-20" />
+          <p className="text-black text-sm mt-2 font-bold">Pitch and Thread</p>
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
@@ -59,24 +55,12 @@ export default function SignIn() {
             >
               {loading ? "Signing In..." : "Sign In"}
             </Button>
-            <div className="relative flex items-center justify-center mt-4">
-              <div className="absolute w-full h-[1px] bg-gray-300"></div>
-              <span className="bg-white px-3 text-gray-500 text-sm">or</span>
-            </div>
-            <Button
-              variant="outline"
-              className="w-full flex items-center justify-center gap-2 border-gray-300 bg-gray-100 text-gray-800 shadow-md py-3 px-4 rounded-xl hover:bg-gray-200 transition duration-300"
-            >
-              <FcGoogle className="text-2xl" /> Sign in with Google
-            </Button>
+
             <p className="text-sm text-center text-gray-600 mt-4">
               Don't have an account?{" "}
-              {/* <Link
-                to="/signup"
-                className="text-pink-500 font-medium hover:underline"
-              >
-                Sign up
-              </Link> */}
+              <Link to="/signup" className="text-pink-500 font-bold">
+                Sign Up
+              </Link>
             </p>
           </div>
         </CardContent>
