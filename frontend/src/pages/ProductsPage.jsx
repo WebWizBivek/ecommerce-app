@@ -1,25 +1,144 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([
     {
-      id: 191,
-      title: "Rolex Cellini Moonphase",
+      id: 1,
+      title: "Essence Mascara Lash Princess",
       description:
-        "The Rolex Cellini Moonphase watch is a masterpiece of horology. Featuring a moon phase complication, it showcases the craftsmanship and elegance that Rolex is renowned for.",
-      category: "womens-watches",
-      price: 15999.99,
-      discountPercentage: 18.76,
-      rating: 3.41,
-      stock: 66,
-      tags: ["watches", "luxury watches"],
-      brand: "Rolex",
-      sku: "E8CYFYQL",
-      weight: 5,
+        "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
+      category: "beauty",
+      price: 9.99,
+      discountPercentage: 7.17,
+      rating: 4.94,
+      stock: 5,
+      tags: ["beauty", "mascara"],
+      brand: "Essence",
+      sku: "RCH45Q1A",
+      weight: 2,
       dimensions: {
-        width: 22.54,
-        height: 20.15,
-        depth: 25.37,
+        width: 23.17,
+        height: 14.43,
+        depth: 28.01,
+      },
+      warrantyInformation: "1 month warranty",
+      shippingInformation: "Ships in 1 month",
+      availabilityStatus: "Low Stock",
+      reviews: [
+        {
+          rating: 2,
+          comment: "Very unhappy with my purchase!",
+          date: "2024-05-23T08:56:21.618Z",
+          reviewerName: "John Doe",
+          reviewerEmail: "john.doe@x.dummyjson.com",
+        },
+        {
+          rating: 2,
+          comment: "Not as described!",
+          date: "2024-05-23T08:56:21.618Z",
+          reviewerName: "Nolan Gonzalez",
+          reviewerEmail: "nolan.gonzalez@x.dummyjson.com",
+        },
+        {
+          rating: 5,
+          comment: "Very satisfied!",
+          date: "2024-05-23T08:56:21.618Z",
+          reviewerName: "Scarlett Wright",
+          reviewerEmail: "scarlett.wright@x.dummyjson.com",
+        },
+      ],
+      returnPolicy: "30 days return policy",
+      minimumOrderQuantity: 24,
+      meta: {
+        createdAt: "2024-05-23T08:56:21.618Z",
+        updatedAt: "2024-05-23T08:56:21.618Z",
+        barcode: "9164035109868",
+        qrCode: "https://assets.dummyjson.com/public/qr-code.png",
+      },
+      images: [
+        "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png",
+      ],
+      thumbnail:
+        "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
+    },
+    {
+      id: 2,
+      title: "Eyeshadow Palette with Mirror",
+      description:
+        "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
+      category: "beauty",
+      price: 19.99,
+      discountPercentage: 5.5,
+      rating: 3.28,
+      stock: 44,
+      tags: ["beauty", "eyeshadow"],
+      brand: "Glamour Beauty",
+      sku: "MVCFH27F",
+      weight: 3,
+      dimensions: {
+        width: 12.42,
+        height: 8.63,
+        depth: 29.13,
+      },
+      warrantyInformation: "1 year warranty",
+      shippingInformation: "Ships in 2 weeks",
+      availabilityStatus: "In Stock",
+      reviews: [
+        {
+          rating: 4,
+          comment: "Very satisfied!",
+          date: "2024-05-23T08:56:21.618Z",
+          reviewerName: "Liam Garcia",
+          reviewerEmail: "liam.garcia@x.dummyjson.com",
+        },
+        {
+          rating: 1,
+          comment: "Very disappointed!",
+          date: "2024-05-23T08:56:21.618Z",
+          reviewerName: "Nora Russell",
+          reviewerEmail: "nora.russell@x.dummyjson.com",
+        },
+        {
+          rating: 5,
+          comment: "Highly impressed!",
+          date: "2024-05-23T08:56:21.618Z",
+          reviewerName: "Elena Baker",
+          reviewerEmail: "elena.baker@x.dummyjson.com",
+        },
+      ],
+      returnPolicy: "30 days return policy",
+      minimumOrderQuantity: 32,
+      meta: {
+        createdAt: "2024-05-23T08:56:21.618Z",
+        updatedAt: "2024-05-23T08:56:21.618Z",
+        barcode: "2817839095220",
+        qrCode: "https://assets.dummyjson.com/public/qr-code.png",
+      },
+      images: [
+        "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png",
+      ],
+      thumbnail:
+        "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
+    },
+    {
+      id: 3,
+      title: "Powder Canister",
+      description:
+        "The Powder Canister is a finely milled setting powder designed to set makeup and control shine. With a lightweight and translucent formula, it provides a smooth and matte finish.",
+      category: "beauty",
+      price: 14.99,
+      discountPercentage: 18.14,
+      rating: 3.82,
+      stock: 59,
+      tags: ["beauty", "face powder"],
+      brand: "Velvet Touch",
+      sku: "9EN8WLT2",
+      weight: 8,
+      dimensions: {
+        width: 24.16,
+        height: 10.7,
+        depth: 11.07,
       },
       warrantyInformation: "2 year warranty",
       shippingInformation: "Ships in 1-2 business days",
@@ -27,177 +146,112 @@ const ProductsPage = () => {
       reviews: [
         {
           rating: 5,
-          comment: "Great value for money!",
-          date: "2024-05-23T08:56:21.628Z",
-          reviewerName: "Logan Lee",
-          reviewerEmail: "logan.lee@x.dummyjson.com",
-        },
-        {
-          rating: 1,
-          comment: "Would not recommend!",
-          date: "2024-05-23T08:56:21.628Z",
-          reviewerName: "Leah Henderson",
-          reviewerEmail: "leah.henderson@x.dummyjson.com",
-        },
-        {
-          rating: 5,
-          comment: "Very pleased!",
-          date: "2024-05-23T08:56:21.628Z",
-          reviewerName: "Mateo Nguyen",
-          reviewerEmail: "mateo.nguyen@x.dummyjson.com",
-        },
-      ],
-      returnPolicy: "60 days return policy",
-      minimumOrderQuantity: 1,
-      meta: {
-        createdAt: "2024-05-23T08:56:21.628Z",
-        updatedAt: "2024-05-23T08:56:21.628Z",
-        barcode: "3517608890772",
-        qrCode: "https://assets.dummyjson.com/public/qr-code.png",
-      },
-      images: [
-        "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Cellini%20Moonphase/1.png",
-        "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Cellini%20Moonphase/2.png",
-        "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Cellini%20Moonphase/3.png",
-      ],
-      thumbnail:
-        "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Cellini%20Moonphase/thumbnail.png",
-    },
-    {
-      id: 192,
-      title: "Rolex Datejust Women",
-      description:
-        "The Rolex Datejust Women's watch is an iconic timepiece designed for women. With a timeless design and a date complication, it offers both elegance and functionality.",
-      category: "womens-watches",
-      price: 10999.99,
-      discountPercentage: 17.72,
-      rating: 3.53,
-      stock: 31,
-      tags: ["watches", "luxury watches", "women's watches"],
-      brand: "Rolex",
-      sku: "VKQ2UNB9",
-      weight: 8,
-      dimensions: {
-        width: 14.53,
-        height: 29.73,
-        depth: 10.22,
-      },
-      warrantyInformation: "6 months warranty",
-      shippingInformation: "Ships in 3-5 business days",
-      availabilityStatus: "In Stock",
-      reviews: [
-        {
-          rating: 2,
-          comment: "Very disappointed!",
-          date: "2024-05-23T08:56:21.628Z",
-          reviewerName: "Evan Reed",
-          reviewerEmail: "evan.reed@x.dummyjson.com",
-        },
-        {
-          rating: 5,
-          comment: "Excellent quality!",
-          date: "2024-05-23T08:56:21.628Z",
-          reviewerName: "Isabella Jackson",
-          reviewerEmail: "isabella.jackson@x.dummyjson.com",
+          comment: "Very happy with my purchase!",
+          date: "2024-05-23T08:56:21.618Z",
+          reviewerName: "Ethan Thompson",
+          reviewerEmail: "ethan.thompson@x.dummyjson.com",
         },
         {
           rating: 4,
-          comment: "Highly recommended!",
-          date: "2024-05-23T08:56:21.628Z",
-          reviewerName: "Liam Garcia",
-          reviewerEmail: "liam.garcia@x.dummyjson.com",
-        },
-      ],
-      returnPolicy: "90 days return policy",
-      minimumOrderQuantity: 1,
-      meta: {
-        createdAt: "2024-05-23T08:56:21.628Z",
-        updatedAt: "2024-05-23T08:56:21.628Z",
-        barcode: "6032534220602",
-        qrCode: "https://assets.dummyjson.com/public/qr-code.png",
-      },
-      images: [
-        "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Datejust%20Women/1.png",
-        "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Datejust%20Women/2.png",
-        "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Datejust%20Women/3.png",
-      ],
-      thumbnail:
-        "https://cdn.dummyjson.com/products/images/womens-watches/Rolex%20Datejust%20Women/thumbnail.png",
-    },
-    {
-      id: 193,
-      title: "Watch Gold for Women",
-      description:
-        "The Gold Women's Watch is a stunning accessory that combines luxury and style. Featuring a gold-plated case and a chic design, it adds a touch of glamour to any outfit.",
-      category: "womens-watches",
-      price: 799.99,
-      discountPercentage: 6.37,
-      rating: 3.03,
-      stock: 94,
-      tags: ["watches", "women's watches"],
-      brand: "Fashion Gold",
-      sku: "N6I9YEWM",
-      weight: 8,
-      dimensions: {
-        width: 5.9,
-        height: 13.64,
-        depth: 23.65,
-      },
-      warrantyInformation: "2 year warranty",
-      shippingInformation: "Ships in 1 month",
-      availabilityStatus: "In Stock",
-      reviews: [
-        {
-          rating: 1,
-          comment: "Not as described!",
-          date: "2024-05-23T08:56:21.628Z",
-          reviewerName: "Lucas Allen",
-          reviewerEmail: "lucas.allen@x.dummyjson.com",
+          comment: "Great value for money!",
+          date: "2024-05-23T08:56:21.618Z",
+          reviewerName: "Levi Hicks",
+          reviewerEmail: "levi.hicks@x.dummyjson.com",
         },
         {
           rating: 5,
           comment: "Highly impressed!",
-          date: "2024-05-23T08:56:21.628Z",
-          reviewerName: "Bella Gonzalez",
-          reviewerEmail: "bella.gonzalez@x.dummyjson.com",
-        },
-        {
-          rating: 4,
-          comment: "Would buy again!",
-          date: "2024-05-23T08:56:21.628Z",
-          reviewerName: "Michael Johnson",
-          reviewerEmail: "michael.johnson@x.dummyjson.com",
+          date: "2024-05-23T08:56:21.618Z",
+          reviewerName: "Hazel Gardner",
+          reviewerEmail: "hazel.gardner@x.dummyjson.com",
         },
       ],
-      returnPolicy: "No return policy",
-      minimumOrderQuantity: 2,
+      returnPolicy: "60 days return policy",
+      minimumOrderQuantity: 25,
       meta: {
-        createdAt: "2024-05-23T08:56:21.628Z",
-        updatedAt: "2024-05-23T08:56:21.628Z",
-        barcode: "0793324106392",
+        createdAt: "2024-05-23T08:56:21.618Z",
+        updatedAt: "2024-05-23T08:56:21.618Z",
+        barcode: "0516267971277",
         qrCode: "https://assets.dummyjson.com/public/qr-code.png",
       },
       images: [
-        "https://cdn.dummyjson.com/products/images/womens-watches/Watch%20Gold%20for%20Women/1.png",
-        "https://cdn.dummyjson.com/products/images/womens-watches/Watch%20Gold%20for%20Women/2.png",
-        "https://cdn.dummyjson.com/products/images/womens-watches/Watch%20Gold%20for%20Women/3.png",
+        "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/1.png",
       ],
       thumbnail:
-        "https://cdn.dummyjson.com/products/images/womens-watches/Watch%20Gold%20for%20Women/thumbnail.png",
+        "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/thumbnail.png",
+    },
+    {
+      id: 4,
+      title: "Red Lipstick",
+      description:
+        "The Red Lipstick is a classic and bold choice for adding a pop of color to your lips. With a creamy and pigmented formula, it provides a vibrant and long-lasting finish.",
+      category: "beauty",
+      price: 12.99,
+      discountPercentage: 19.03,
+      rating: 2.51,
+      stock: 68,
+      tags: ["beauty", "lipstick"],
+      brand: "Chic Cosmetics",
+      sku: "O5IF1NTA",
+      weight: 5,
+      dimensions: {
+        width: 14.37,
+        height: 13.94,
+        depth: 14.6,
+      },
+      warrantyInformation: "Lifetime warranty",
+      shippingInformation: "Ships in 2 weeks",
+      availabilityStatus: "In Stock",
+      reviews: [
+        {
+          rating: 5,
+          comment: "Great product!",
+          date: "2024-05-23T08:56:21.619Z",
+          reviewerName: "Leo Rivera",
+          reviewerEmail: "leo.rivera@x.dummyjson.com",
+        },
+        {
+          rating: 4,
+          comment: "Very pleased!",
+          date: "2024-05-23T08:56:21.619Z",
+          reviewerName: "Oscar Powers",
+          reviewerEmail: "oscar.powers@x.dummyjson.com",
+        },
+        {
+          rating: 5,
+          comment: "Very pleased!",
+          date: "2024-05-23T08:56:21.619Z",
+          reviewerName: "Carter Rivera",
+          reviewerEmail: "carter.rivera@x.dummyjson.com",
+        },
+      ],
+      returnPolicy: "90 days return policy",
+      minimumOrderQuantity: 6,
+      meta: {
+        createdAt: "2024-05-23T08:56:21.619Z",
+        updatedAt: "2024-05-23T08:56:21.619Z",
+        barcode: "9444582199406",
+        qrCode: "https://assets.dummyjson.com/public/qr-code.png",
+      },
+      images: [
+        "https://cdn.dummyjson.com/products/images/beauty/Red%20Lipstick/1.png",
+      ],
+      thumbnail:
+        "https://cdn.dummyjson.com/products/images/beauty/Red%20Lipstick/thumbnail.png",
     },
   ]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("All");
   const categories = ["All", "womens-watches", "luxury watches"];
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("/api/products");
-        const productArray = Array.isArray(response.data) ? response.data : [];
-        setProducts(productArray);
-        setFilteredProducts(productArray);
+        // Uncomment this line to fetch real data
+        // const response = await axios.get("/api/products");
+        // setProducts(response.data);
+        setFilteredProducts(products);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -209,40 +263,30 @@ const ProductsPage = () => {
     let filtered = products.filter((product) =>
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    if (category && category !== "All") {
+    if (category !== "All") {
       filtered = filtered.filter((product) => product.category === category);
     }
     setFilteredProducts(filtered);
   }, [searchTerm, category, products]);
 
   return (
-    <div style={{ maxWidth: "1200px", margin: "auto", padding: "20px" }}>
-      <h1
-        style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "20px" }}
-      >
-        All Products
+    <div className="max-w-6xl mx-auto p-6">
+      <h1 className="text-3xl font-bold text-center mb-6">
+        Shop Our Collection
       </h1>
-      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+
+      <div className="flex flex-col md:flex-row gap-4 mb-6 justify-center">
         <input
           type="text"
           placeholder="Search products..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            flex: "1",
-            padding: "10px",
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-          }}
+          className="w-full md:w-1/3 px-4 py-2 border-2 border-blue-500 rounded-full text-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
         />
         <select
           onChange={(e) => setCategory(e.target.value)}
           value={category}
-          style={{
-            padding: "10px",
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-          }}
+          className="px-4 py-2 border-2 border-blue-500 rounded-full text-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
         >
           {categories.map((cat) => (
             <option key={cat} value={cat}>
@@ -251,64 +295,34 @@ const ProductsPage = () => {
           ))}
         </select>
       </div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-          gap: "20px",
-        }}
-      >
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredProducts.map((product) => (
           <div
             key={product.id}
-            style={{
-              border: "1px solid #ddd",
-              borderRadius: "10px",
-              padding: "15px",
-              textAlign: "center",
-            }}
+            className="border rounded-xl p-4 text-center bg-white shadow-lg transition-transform transform hover:scale-105"
           >
-            <h3 style={{ fontSize: "18px", fontWeight: "bold" }}>
-              {product.title}
-            </h3>
-            <p style={{ color: "#666", fontSize: "14px" }}>
+            <h3 className="text-lg font-semibold">{product.title}</h3>
+            <p className="text-gray-500 text-sm">
               {product.brand} - {product.category}
             </p>
             <img
               src={product.thumbnail || product.images[0]}
               alt={product.title}
-              style={{
-                width: "100%",
-                height: "150px",
-                objectFit: "cover",
-                borderRadius: "5px",
-                marginBottom: "10px",
-              }}
+              className="w-full h-40 object-cover rounded-lg my-3"
             />
-            <p style={{ fontSize: "16px", fontWeight: "bold", color: "#333" }}>
-              ${product.price}
-            </p>
-            <p style={{ fontSize: "12px", color: "#666" }}>
-              {product.warrantyInformation}
-            </p>
-            <p style={{ fontSize: "12px", color: "green" }}>
+            <p className="text-xl font-bold text-gray-900">${product.price}</p>
+            <p
+              className={`text-sm ${
+                product.availabilityStatus === "In Stock"
+                  ? "text-green-500"
+                  : "text-red-500"
+              }`}
+            >
               {product.availabilityStatus}
             </p>
-            <p style={{ fontSize: "12px", marginTop: "5px" }}>
-              ⭐ {product.rating} / 5
-            </p>
-            <button
-              style={{
-                marginTop: "10px",
-                padding: "10px",
-                width: "100%",
-                background: "#007bff",
-                color: "white",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-            >
+            <p className="text-sm mt-2">⭐ {product.rating} / 5</p>
+            <button className="mt-4 px-6 py-2 w-full bg-blue-500 text-white font-medium rounded-full hover:bg-blue-600 transition-colors">
               Add to Cart
             </button>
           </div>
