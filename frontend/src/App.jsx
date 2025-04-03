@@ -7,9 +7,10 @@ import Loader from "./customCom/Loader";
 import ProductDetail from "./pages/ProductDetail";
 import Header from "./components/Header";
 import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 const App = () => {
-  return <SignIn />;
+  return <AppRoutes />;
 };
 
 export default App;

@@ -3,11 +3,14 @@ dotenv.config();
 const nodemailer = require("nodemailer");
 
 const express = require('express');
-const connectDB = require('./utils/db.js');
-const app = express();
 const userRoutes = require('./routes/userRoutes.js');
 
+const cors = require('cors');
+const connectDB = require('./utils/db.js');
+const app = express();
+
 connectDB();
+app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRoutes);
