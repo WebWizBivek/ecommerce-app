@@ -275,27 +275,6 @@ const ProductsPage = () => {
         Shop Our Collection
       </h1>
 
-      <div className="flex flex-col md:flex-row gap-4 mb-6 justify-center">
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full md:w-1/3 px-4 py-2 border-2 border-blue-500 rounded-full text-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
-        />
-        <select
-          onChange={(e) => setCategory(e.target.value)}
-          value={category}
-          className="px-4 py-2 border-2 border-blue-500 rounded-full text-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
-        >
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
-      </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredProducts.map((product) => (
           <div

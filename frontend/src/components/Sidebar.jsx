@@ -26,7 +26,7 @@ const Sidebar = ({ categories, onFilterChange }) => {
   };
 
   return (
-    <div className="w-64 p-4 bg-gray-100 h-screen fixed left-0 top-0 overflow-y-auto shadow-lg">
+    <div className="w-64 p-4 bg-gray-100  shadow-lg">
       <h2 className="text-xl font-semibold mb-4">Filters</h2>
 
       {/* Category Filter */}
