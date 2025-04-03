@@ -3,20 +3,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import axios from "axios";
+// import { Link } from "react-router";
 
 export default function SignIn() {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSignIn = async () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      alert("Signed in successfully!");
-    }, 1000);
+    const response = await axios.post(`${BASE_URL}/user/signin`, {
+      email,
+      password,
+    });
+    2;
   };
 
   return (
@@ -53,14 +54,14 @@ export default function SignIn() {
               onClick={handleSignIn}
               disabled={loading}
             >
-              {loading ? "Signing In..." : "Sign In"}
+              Signin
             </Button>
 
             <p className="text-sm text-center text-gray-600 mt-4">
               Don't have an account?{" "}
-              <Link to="/signup" className="text-pink-500 font-bold">
+              {/* <Link to="/signup" className="text-pink-500 font-bold">
                 Sign Up
-              </Link>
+              </Link> */}
             </p>
           </div>
         </CardContent>

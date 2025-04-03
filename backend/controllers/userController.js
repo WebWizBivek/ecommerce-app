@@ -8,6 +8,9 @@ const User = mongoose.model("User", require("../models/userSchema"));
 const signup = async (req, res) => {
     try {
         const { name, email, password } = req.body;
+        if (!name || !email || !password) {
+            return res.status(400).json({ message: "Something is missing" });
+        }
 
         // Check if user already exists
         let user = await User.findOne({ email });
@@ -21,7 +24,7 @@ const signup = async (req, res) => {
         user = new User({ name, email, password: hashedPassword });
         await user.save();
 
-        res.status(201).json({ message: "User registered successfully" });
+        return res.status(201).json({ message: "User registered successfully" });
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
     }
@@ -31,6 +34,9 @@ const signup = async (req, res) => {
 const signin = async (req, res) => {
     try {
         const { email, password } = req.body;
+        if (!email || !password) {
+            return res.status(400).json({ message: "Something is missing" });
+        }
 
         // Check if user exists
         let user = await User.findOne({ email });
@@ -41,11 +47,11 @@ const signin = async (req, res) => {
         if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
         // Generate JWT token
-        const token = jwt.sign({ id: user._id }, "your_jwt_secret", { expiresIn: "1h" });
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
-        res.status(200).json({ token, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } });
+        return res.status(200).json({ token, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } });
     } catch (error) {
-        res.status(500).json({ message: "Server error", error: error.message });
+        return res.status(500).json({ message: "Server error", error: error.message });
     }
 };
 

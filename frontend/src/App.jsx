@@ -6,9 +6,10 @@ import HomeLayout from "./layouts/HomeLayout";
 import Loader from "./customCom/Loader";
 import ProductDetail from "./pages/ProductDetail";
 import Header from "./components/Header";
+import SignIn from "./pages/SignIn";
 
 const App = () => {
-  return <Header />;
+  return <SignIn />;
 };
 
 export default App;

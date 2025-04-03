@@ -5,24 +5,31 @@ const nodemailer = require("nodemailer");
 const express = require('express');
 const connectDB = require('./utils/db.js');
 const app = express();
+const userRoutes = require('./routes/userRoutes.js');
+
 connectDB();
+app.use(express.json());
+
+app.use("/user", userRoutes);
+// app.use("/admin", adminRoutes);
+
 
 
 app.get("/send", async (req, res) => {
-    const auth = nodemailer.createTransport({
-        service: "gmail",
-        secure: true,
-        port: 465,
-        auth: {
-            user: process.env.EMAIL,
-            pass: process.env.PASSWORD,
-        }
-    });
-    let mailOptions = {
-        from: process.env.EMAIL,
-        to: "bivekwangkhem6001@gmail.com",
-        subject: "Test Email",
-        html: `
+  const auth = nodemailer.createTransport({
+    service: "gmail",
+    secure: true,
+    port: 465,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+    }
+  });
+  let mailOptions = {
+    from: process.env.EMAIL,
+    to: "bivekwangkhem6001@gmail.com",
+    subject: "Test Email",
+    html: `
         <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9;">
         <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
           <!-- Header Section with Logo -->
@@ -47,14 +54,14 @@ app.get("/send", async (req, res) => {
         </div>
       </div>
       `,
-    };
+  };
 
-    // Send email
-    let info = await auth.sendMail(mailOptions);
+  // Send email
+  let info = await auth.sendMail(mailOptions);
 })
 
 app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ${process.env.PORT}`);
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
 
 

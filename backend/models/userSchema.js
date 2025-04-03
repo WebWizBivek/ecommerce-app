@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     },
     profilePic: {
         type: String,
-        default: "https://iconarchive.com/download/i109569/Flat-Design/User-Profile-2-Avatar-User-Profile.ico"
+        default: "https://static.vecteezy.com/system/resources/previews/003/715/527/non_2x/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-vector.jpg"
     },
     orders: {
         type: Array,
