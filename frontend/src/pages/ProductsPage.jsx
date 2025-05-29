@@ -248,9 +248,8 @@ const ProductsPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Uncomment this line to fetch real data
-        // const response = await axios.get("/api/products");
-        // setProducts(response.data);
+        const response = await axios.get("http://localhost:3000/api/products");
+        setProducts(response.data.products);
         setFilteredProducts(products);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -275,7 +274,7 @@ const ProductsPage = () => {
         Shop Our Collection
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 overflow-y-scroll sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredProducts.map((product) => (
           <div
             key={product.id}

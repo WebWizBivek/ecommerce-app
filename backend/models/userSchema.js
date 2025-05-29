@@ -3,6 +3,9 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
     },
+    phone: {
+        type: Number
+    },
     email: {
         type: String,
         required: true,
@@ -24,10 +27,7 @@ const userSchema = new mongoose.Schema({
         type: Array,
         default: []
     },
-    wishlist: {
-        type: Array,
-        default: []
-    }
+
 });
 
 module.exports = userSchema;

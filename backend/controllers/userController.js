@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
+const sendOtp = require("../helper/otp");
 const User = mongoose.model("User", require("../models/userSchema"));
 
 // Signup Controller
@@ -11,6 +12,14 @@ const signup = async (req, res) => {
         if (!name || !email || !password) {
             return res.status(400).json({ message: "Something is missing" });
         }
+
+        function generateOTP() {
+            return Math.floor(1000 + Math.random() * 9000);
+        }
+
+        const otp = generateOTP();
+        console.log(otp); // e.g., 4723
+
 
         // Check if user already exists
         let user = await User.findOne({ email });
@@ -39,21 +48,36 @@ const signin = async (req, res) => {
         }
 
         // Check if user exists
-        let user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ message: "Invalid credentials" });
+        const user = await User.findOne({ email });
+        if (!user) return res.status(400).json({ message: "User doesn't exist" });
 
         // Validate password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
-        // Generate JWT token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+        // Generate 4-digit OTP
+        const otp = Math.floor(1000 + Math.random() * 9000);
 
-        return res.status(200).json({ token, user: { id: user._id, name: user.name, email: user.email, profilePic: user.profilePic } });
+        // Set OTP expiration (e.g., 5 minutes)
+        const otpExpires = Date.now() + 5 * 60 * 1000;
+
+        // Store OTP and expiry in DB (assuming user schema has `otp` and `otpExpires`)
+        user.otp = otp;
+        user.otpExpires = otpExpires;
+        await user.save();
+
+        // TODO: Send OTP via email/SMS here
+        await sendOtp(user.email, otp);
+
+        return res.status(200).json({
+            message: "OTP sent to your registered email/phone",
+            userId: user._id
+        });
     } catch (error) {
         return res.status(500).json({ message: "Server error", error: error.message });
     }
 };
+
 
 // Edit Profile Controller
 const editProfile = async (req, res) => {
