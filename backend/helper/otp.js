@@ -16,7 +16,7 @@ async function sendOtp(email, otp) {
     });
     let mailOptions = {
         from: "bivekwangkhem9101@gmail.com",
-        to: email,
+        to: "biveksingha.dev@gmail.com",
         subject: "Test Email",
         text: `Your OTP is ${otp}. It is valid for 5 minutes.`,
         html: `<!DOCTYPE html>
